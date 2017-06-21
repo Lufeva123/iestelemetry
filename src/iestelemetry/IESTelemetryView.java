@@ -55,12 +55,18 @@ import java.util.Date;
 import javax.swing.UIManager.*;
 /**
  * The application's main frame.
+ * @author Pedro Pena
  */
 public class IESTelemetryView extends FrameView {
 
 
 
 
+    /**
+     * Constructor of the class IESTelemetryView
+     * Forcing the Nimbus Look and Feel to control how it looks across different platforms
+     * @param app An application base class for simple GUIs with one primary JFrame. 
+     */
     public IESTelemetryView(SingleFrameApplication app) {
 
 
@@ -137,6 +143,9 @@ public class IESTelemetryView extends FrameView {
     init();
     }// end constructor
 
+    /**
+     * Shows the User Interface
+     */
     @Action
     public void showAboutBox() {
         if (aboutBox == null) {
@@ -1545,19 +1554,25 @@ public class IESTelemetryView extends FrameView {
        NotesjTextArea.setCaretPosition(NotesjTextArea.getDocument().getLength());
     }//GEN-LAST:event_NotesjTextAreaKeyPressed
 
+    
+    /**
+     * Sends release code guarded by ctrl + "g".
+     * @param evt An event which indicates that a keystroke occurred in a component. 
+     */
     private void rawDataTabbedPaneKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rawDataTabbedPaneKeyPressed
 
-       switch(evt.getKeyCode()){
-           case KeyEvent.VK_G:
-               if(evt.isControlDown()){
+               if(evt.isControlDown() && evt.getKeyCode() == KeyEvent.VK_G){
                    NotesjTextArea.setText("g has been pressed");
                    logNotes("Guarded command sent");
                }
-               break;
-       }// end switch
+   
 
     }//GEN-LAST:event_rawDataTabbedPaneKeyPressed
 
+    /**
+     * Sends the release command guarded by ctrl + "g".
+     * @param evt An event which indicates that a keystroke occurred in a component. 
+     */
     private void transmitCodejComboBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_transmitCodejComboBoxKeyPressed
        switch(evt.getKeyCode()){
            case KeyEvent.VK_G:
@@ -1569,10 +1584,15 @@ public class IESTelemetryView extends FrameView {
         }// end switch
     }//GEN-LAST:event_transmitCodejComboBoxKeyPressed
 
+    /**
+     * Listens for an action performed in the "about" tab of the help drop-down
+     * @param evt An event which indicates that a keystroke occurred in a component. 
+     */
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
+    
 private void connectjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectjButtonActionPerformed
 // TODO add your handling code here:
 }//GEN-LAST:event_connectjButtonActionPerformed
@@ -1906,7 +1926,10 @@ public void log(String message){
 
 
 
-
+/**
+ * Records notes written by the user in the 'Notes" text box to a separate file.
+ * @param s The note to be recorded on a separate file
+ */
     private void logNotes(String s){
         try{
             File f = new File(fileLocationjTextField.getText()+File.separator+IESTypejComboBox.getSelectedItem()+"_"+SerialNumberjTextField.getText()+"_"+IESModeljComboBox.getSelectedItem()+"_"+DeckUnitjComboBox.getSelectedItem()+"_notes.txt");
@@ -2371,11 +2394,17 @@ int getFlowControl(){
          setFreqsAndPeriod();
     }
 
+    /**
+     * Calls method setFreqsAndPeriod which sets the frequencies and period that will ultimately be used by the ConvertIncomming data object
+     */
     @Action
     public void setGuiModelNumber() {
          setFreqsAndPeriod();
     }
 
+    /**
+     * Sets the type of deck box being used from by using its String name and setting its corresponding index.
+     */
     @Action
     public void setDeckBoxType() {
         deckBoxInUse = this.DeckUnitjComboBox.getSelectedItem()+"";
@@ -2486,6 +2515,9 @@ int getFlowControl(){
         //System.out.println("set to "+deckBoxInUse);
     }
 
+  /**
+   * Configures the deck box being used according to the type specified in the setDeckBoxType() method.
+   */
     @Action
     public void configureTheDeckBox() {
 
@@ -2639,7 +2671,9 @@ JLabel labelThatHoldsTimeLeft;
   }
 
 
-
+/**
+ * Sends the URI Code selected on the "transmit code" drop-down menu to the universal deck box.
+ */
     @Action
     public void sendURICode() {
         if(selectedURICommand >= 0 && selectedURICommand<=63){}// end if
@@ -2716,6 +2750,9 @@ JLabel labelThatHoldsTimeLeft;
 
     }
 
+    /**
+     * The transmitter sends a single signal (ping) that is used generally for ranging or for setting up the transmitter on older deck boxes.
+     */
     @Action
     public void sendSinglePing() {
 
@@ -2737,6 +2774,9 @@ JLabel labelThatHoldsTimeLeft;
         ssp.start();
     }// end sendSinglePing
 
+    /**
+     * Provides visual feedback on the user interface indicating what type of signal was sent depending on the URI code selected on the "Transmit code" drop-down.
+     */
     @Action
     public void selectURICommand() {
         this.selectedURICommand=this.transmitCodejComboBox.getSelectedIndex();

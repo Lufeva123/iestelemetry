@@ -18,6 +18,7 @@
 *                                                                      *                                         
 ************************************************************************
 
+myVersion
 
 The steps to get this program running are
 

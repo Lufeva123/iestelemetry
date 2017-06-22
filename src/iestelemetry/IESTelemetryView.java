@@ -2815,6 +2815,9 @@ JLabel labelThatHoldsTimeLeft;
         }//end if
     }
 
+    /**
+     * Opens IES Manual as a pdf file.
+     */
     @Action
     public void launchIESManual() {
       String ps = File.separator;
@@ -2848,6 +2851,9 @@ JLabel labelThatHoldsTimeLeft;
        
     } // end launchIESManual
 
+    /**
+     * Opens IES Telemetry Help as a html on the web browser.
+     */
     @Action
     public void telemetryHelp() {
 
@@ -2883,6 +2889,9 @@ JLabel labelThatHoldsTimeLeft;
 
     }//end telemetry help
 
+    /**
+     * Opens ATM90x Addendum as a pdf file.
+     */
     @Action
     public void launchATM90xAddendum() {
 
@@ -2915,6 +2924,9 @@ JLabel labelThatHoldsTimeLeft;
       }// end catch
     }
 
+    /**
+     * Opens ATM900 Series Manual as a pdf file.
+     */
     @Action
     public void launchATM900SeriesManual() {
 
@@ -2946,7 +2958,10 @@ JLabel labelThatHoldsTimeLeft;
       }// end if
       }// end catch
     }
-
+    
+    /**
+     * Opens UDB Manual as a pdf file.
+     */
     @Action
     public void launchUDBManual() {
 
@@ -2982,6 +2997,9 @@ JLabel labelThatHoldsTimeLeft;
 
     }
 
+    /**
+     * Opens DS7000 Manual as a pdf file.
+     */
     @Action
     public void launchDS7000Manual() {
 
@@ -3021,6 +3039,9 @@ public class MockEventListener implements SerialPortEventListener{
 
 }// end mockEventListener
 
+/**
+ * Sets the RXT Threshold based on the user input given on the "Configure Deck Unit" pane in the "Configuration" tab.
+ */
     @Action
     public void setRXThreshold() {
         SetRXThreshold rxt = new SetRXThreshold();
@@ -3029,7 +3050,9 @@ public class MockEventListener implements SerialPortEventListener{
         rxt.start();
         
     }
-
+/**
+ * Sets the 100 kHz Sensitivity of the microphone based on the user input given on the "Configure Deck Unit" pane in the "Configuration" tab.
+ */
     @Action
     public void set100kSensitivity() {
         
@@ -3038,7 +3061,10 @@ public class MockEventListener implements SerialPortEventListener{
         crs.setChannelandRxSensitivity("10.0",set100kSensitivityjComboBox.getSelectedItem()+"");
         crs.start();
     }
-
+    
+    /**
+     * Sets the 105 kHz Sensitivity of the microphone based on the user input given on the "Configure Deck Unit" pane in the "Configuration" tab.
+     */
     @Action
     public void set105kSensitivity() {
         
@@ -3049,6 +3075,9 @@ public class MockEventListener implements SerialPortEventListener{
         
     }
 
+    /**
+     * Sets the 110 kHz Sensitivity of the microphone based on the user input given on the "Configure Deck Unit" pane in the "Configuration" tab.
+     */
     @Action
     public void set110kSensitivity() {
   
@@ -3059,6 +3088,9 @@ public class MockEventListener implements SerialPortEventListener{
         
     }
 
+    /**
+     * Sets the 115 kHz Sensitivity of the microphone based on the user input given on the "Configure Deck Unit" pane in the "Configuration" tab.
+     */
     @Action
     public void set115kSensitivity() {
         SetChannelReceiveSensitivity crs = new SetChannelReceiveSensitivity();
@@ -3068,6 +3100,9 @@ public class MockEventListener implements SerialPortEventListener{
         
     }
 
+    /**
+     * Sets the 120 kHz Sensitivity of the microphone based on the user input given on the "Configure Deck Unit" pane in the "Configuration" tab.
+     */
     @Action
     public void set120kSensitivity() {
         
@@ -3077,6 +3112,9 @@ public class MockEventListener implements SerialPortEventListener{
         crs.start();         
     }
 
+    /**
+     * Sets the 125 kHz Sensitivity of the microphone based on the user input given on the "Configure Deck Unit" pane in the "Configuration" tab.
+     */
     @Action
     public void set125kSensitivity() {
 
@@ -3087,6 +3125,9 @@ public class MockEventListener implements SerialPortEventListener{
         
     }
 
+    /**
+     * Sets the 130 kHz Sensitivity of the microphone based on the user input given on the "Configure Deck Unit" pane in the "Configuration" tab.
+     */
     @Action
     public void set130kSensitivity() {
         
@@ -3095,7 +3136,10 @@ public class MockEventListener implements SerialPortEventListener{
         crs.setChannelandRxSensitivity("13.0",set130kSensitivityjComboBox.getSelectedItem()+"");
         crs.start();          
     }
-
+    
+    /**
+     * Clears the memory of the deck box.
+     */
     @Action
     public void clearDataLogger() {
         JComponent jc[] = new JComponent[24];

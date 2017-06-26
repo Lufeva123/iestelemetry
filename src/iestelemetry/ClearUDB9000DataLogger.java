@@ -77,7 +77,9 @@ public void setPort(SerialPort sp){
 public void setDeckBox(String db){
     deckBox = db;
 }// end setDeckBox
-
+/**
+ * Stops the task that is being run.
+ */
 public void stopThread(){
     stopped=true;
 
@@ -85,12 +87,18 @@ public void stopThread(){
 
 
 
-
+/**
+ * 
+ * @param j 
+ */
 public void setJComponents(JComponent j[]){
     jComponents = j;
 
 }// end
-
+/**
+ * Sets the state of the JComponents: enabled (true), disabled (false).
+ * @param e The state of the JComponents.
+ */
  public void setJComponentsEnable(boolean e)   {
     for (int i = 0 ; i < jComponents.length - 1 ; i++){
         jComponents[i].setEnabled(e);

@@ -27,7 +27,8 @@ import java.util.Calendar;
 import java.util.TimeZone;
 
 /**
- *
+ *This class extends thread. It converts the raw data in the background,
+ *updates the converted data display and creates two files (converted_download_log_URI_Format.txt and converted_download_log.txt).
  * @author pedro
  */
 class ConvertIncommingFreq2Data extends Thread {
@@ -84,7 +85,10 @@ class ConvertIncommingFreq2Data extends Thread {
     DecimalFormat speedFormat = null;
     DecimalFormat headingFormat = null;
     String deckBoxInUse = "DS-7000";
-
+    
+    /**
+     * Runs this process simultaneously to the main Thread providing feedback to the user in real time.
+     */
     public void run() {
         //this.setPriority(1);
         //System.out.println("cif Priority is "+this.getPriority());
@@ -284,22 +288,37 @@ class ConvertIncommingFreq2Data extends Thread {
         //log("\nTime Elapsed= " + (currentTime-startTime) + " secs\n");;
     }// end run
 
+    /**
+     * Converts the frequency received from the equipment into the data represented by that frequency.
+     * @param t The marker arrival time.
+     */
     public ConvertIncommingFreq2Data(double t) {
         markerArrivalTime = t;
 
     }// end constructor
 
+    /**
+     * Stops the running of this process.
+     */
     public void stopThread() {
         stopped = true;
 
     }//end stopThread               
  
 
+    /**
+     * Sets the number of frequencies that are going to be used to receive the data.
+     * @param num The number of frequencies.
+     */
     public void setNumberOfFreq(int num) {
         numOfFreqs = num;
 
     }// end setNumberOfFreq
 
+    /**
+     * Returns the the amount of time elapsed from the marker arrival time to the current count on the deck box.
+     * @return the amount of time elapsed.
+     */
     private double getDeckBoxElapsedTime() {
         double time = 0.0;
         time = currentDeckBoxCount - markerArrivalTime;
@@ -311,6 +330,10 @@ class ConvertIncommingFreq2Data extends Thread {
 
     }// end getDeckBoxElapsedTime
 
+    /**
+     * Sets the frequency order that the instrument uses to transmit its data.
+     * @param order an array representing the frequency order to be sent.
+     */
     public void setFreqOrder(String[] order) {
         freqOrder = order;
         for (int i = 0; (i < numOfFreqs); i++) {
@@ -322,33 +345,56 @@ class ConvertIncommingFreq2Data extends Thread {
 
     }// end setFreqOrder
 
+    /**
+     * Sets the amount of seconds that it takes to transmit a day's worth of data.
+     * @param t the amount of time in 
+     */
     public void setTimer(int t) {
         timerLength = t;
 
     }// end setTimer
 
+    /**
+     * Sets the frequency to be transmitted by the instrument.
+     * @param freq the frequency
+     * @param time the deck box count to be used.
+     */
     public void sendFrequency(double freq, double time) {
         this.currentFreq = (int) (10 * freq);
         this.currentDeckBoxCount = time;
 
     }//end sendFrequency
 
+    /**
+     * Enables the MSB (Most Significant Bit) Marker and disables the LSB (Least Significant Bit) Marker.
+     */
     public void setMSB() {
         MSBMarker = true;
         LSBMarker = false;
     }// end setMSB()
 
+    /**
+     * Enables the LSB (Least Significant Bit) Marker and disables the MSB (Most Significant Bit) Marker.
+     */
     public void setLSB() {
         LSBMarker = true;
         MSBMarker = false;
     }
 
+    /**
+     * Sets the multi-line area where text is going to be displayed.
+     * @param j an instance of JTextArea.
+     */
     public void setDisplayArea(JTextArea j) {
         displayArea = j;
 
 
     } // end setDisplayArea
 
+    /**
+     * Sets the type of deck box being used.
+     * @param d the type of deck box as a string.
+     */
     public void setDeckBoxType(String d) {
         deckBoxInUse = d;
         if (d.equals("UDB-9000")) {
@@ -365,6 +411,10 @@ class ConvertIncommingFreq2Data extends Thread {
         //System.out.println(deckBoxInUse + " rollover counter value of " + deckBoxCounter + " will be used");
     }// end setDeckBox
 
+    /**
+     * Displays the the converted data on the JTextArea.
+     * @param s the string to be displayed and saved on the file screendump.txt.
+     */
     public void appendData2Display(String s) {
         //System.out.println("appending to display");
         displayArea.append(s + "\n");
@@ -388,26 +438,46 @@ class ConvertIncommingFreq2Data extends Thread {
 
     }
 
+    /**
+     * Sets the file path where the converted will be saved.
+     * @param path the file path as a String.
+     */
     public void setSavePath(String path) {
         savePath = path;
 
     }// end setSavePath
 
+    /**
+     * Sets the current time on the deck box.
+     * @param ct the time in milliseconds
+     */
     public void setCurrentTime(long ct){
         this.currentTime = ct;
     
     }
     
+    /**
+     * Returns the current time
+     * @return current time in milliseconds.
+     */
     public long getCurrentTime(){
     return currentTime;
     }
 
+    /**
+     * Sets the initial time when the marker was received.
+     * @param et time in milliseconds.
+     */
     public void setEpochTimeOfReceivedMarker(long et)
     {
         markerEpochTime = et;
 
     }// end
-
+    
+    /**
+     * Returns the initial time when the marker was received.
+     * @return time in milliseconds.
+     */
         private long getEpochTimeOfReceivedMarker()
     {
         return markerEpochTime;
@@ -438,8 +508,12 @@ class ConvertIncommingFreq2Data extends Thread {
 
     }// end log
  */   
-    
-    
+        
+    /**
+     * Saves the given text on the given file.
+     * @param s the text to be saved as a string.
+     * @param fileName the name of the file where the text will be saved as a string.
+     */    
     private void log(String s,String fileName) {
         try {
             //System.out.println("Logging to file");

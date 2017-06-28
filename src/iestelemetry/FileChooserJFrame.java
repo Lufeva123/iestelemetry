@@ -17,21 +17,28 @@ import javax.swing.*;
 import java.io.*;
 /**
  *
+ * Chooses the directory where you want to save the data.
  * @author Pedro Pena
  */
 public class FileChooserJFrame extends javax.swing.JFrame {
 
     JTextField fileLocation = null;
-    File thePath =null;
+    File thePath = null;
     String pWD = null;
 
-    /** Creates new form FileChooserJFrame */
+    /** 
+     * Creates new form FileChooserJFrame 
+     */
     public FileChooserJFrame() {
         
         initComponents();
         
 
     }
+    /**
+     * Constructor that allows you to specify a file path where to save the data.
+     * @param f the file path as a string.
+     */
         public FileChooserJFrame(String f) {
             System.out.println(f);
                     
@@ -41,7 +48,10 @@ public class FileChooserJFrame extends javax.swing.JFrame {
 
     }
     
-    
+    /**
+     * Displays the path in the JTextField
+     * @param ff the JTextField
+     */
     public void setJTextField(JTextField ff){
 
         fileLocation = ff;
@@ -113,6 +123,7 @@ public class FileChooserJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_SaveFileLocationjFileChooserActionPerformed
 
     /**
+    * The main method of this class.
     * @param args the command line arguments
     */
     public static void main(String args[]) {

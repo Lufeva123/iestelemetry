@@ -17,12 +17,16 @@ import java.io.File;
  */
 
 
-/*
- This class will use the host OS to launch registered documents
+/**
+ * This class will use the host OS to launch registered documents
  */
-
 public class LaunchDesktopDocument {
 
+    /**
+     * Constructor of the class that opens the file specified in the parameters and, if the desktop is supported, opens the file.
+     * @param f the file to be opened.
+     * @throws Exception 
+     */
     public LaunchDesktopDocument(File f)throws Exception{
         Desktop dt = Desktop.getDesktop();
         if(dt.isDesktopSupported()){

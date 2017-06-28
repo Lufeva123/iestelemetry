@@ -64,7 +64,7 @@ public void run(){
 
 /**
  * Sets the serial port to be opened.
- * @param sp
+ * @param sp the serial port to be opened.
  */
 public void setPort(SerialPort sp){
     port = sp;
@@ -88,8 +88,8 @@ public void stopThread(){
 
 
 /**
- * 
- * @param j 
+ * Passes a reference of the JComponents to this class so it knows how to enable and disable the buttons on the User Interface.
+ * @param j the array of JComponents
  */
 public void setJComponents(JComponent j[]){
     jComponents = j;

@@ -13,7 +13,7 @@ import java.util.TimerTask;
 
 /**
  * This class runs in the background reading data from the serial port,
- * updating the raw data display and creating a raw data file
+ * updating the raw data display and creating a raw data file.
  * @author Pedro Pena
  * 1.26.2012  removed 5 second sleep when stopping thread.
  * 1.11.2013 removed buffered reader in main loop of ReadSerialPort.java and no longer using readline to read data coming in. readline does not have a timeout feature.
@@ -62,7 +62,7 @@ public class ReadSerialPort extends Thread{
     //InputStreamReader ist = null;
 
 /**
- *Constructor
+ * Constructor of the class.
  * @param sp Serial port object that is opened
  * @param ta An array of JTextAreas that are updated with the data
  * @param tf An array of JTextFields that are updated by the class
@@ -84,7 +84,7 @@ public class ReadSerialPort extends Thread{
 
     }//end constructor
 /**
- * stops the thread
+ * stops the thread.
  */
    public void stopThread(){
        if(decMSBThread!=null && decMSBThread.isAlive()){
@@ -100,7 +100,7 @@ public class ReadSerialPort extends Thread{
    }// end stopThread
 
  /**
-  * closes the serial port in use
+  * closes the serial port in use.
   */
    public void closePort(){
        try{
@@ -121,8 +121,8 @@ public class ReadSerialPort extends Thread{
    }//end close port
 
 /**
- * sets the label that will be updated LSB or MSB whenever a marker is detected
- * @param j Jlabel that holds the label that show the marker.
+ * sets the label that will be updated LSB or MSB whenever a marker is detected.
+ * @param j JLabel that holds the label that show the marker.
  */
    public void setMarkerLabel(JLabel j){
        markerLabel = j;
@@ -131,8 +131,8 @@ public class ReadSerialPort extends Thread{
    }
 
    /**
-    * sets the frequencies
-    * @param j JComboBox[] that holds the frequencies that are mapped to measurements
+    * sets the frequencies.
+    * @param j JComboBox[] that holds the frequencies that are mapped to measurements.
     */
    public void setFreqsAndPeriod(JComboBox[] j){
        order = new String[]{j[0].getSelectedItem()+"",j[1].getSelectedItem()+"",j[2].getSelectedItem()+"",j[3].getSelectedItem()+"",j[4].getSelectedItem()+""};
@@ -141,17 +141,16 @@ public class ReadSerialPort extends Thread{
    }
 
 /**
- *
- * @param d String sets the Deckbox in use
+ * Sets the deck box in use.
+ * @param d the type of deck box in use.
  */
    public static void setDeckBoxType(String d){
         deckBoxType = d;
 
    }
 /**
- *
- * @param j JLabel sets the JLabel that will get incremented whenever
- * and MSB is detected
+ *sets the JLabel that will get incremented whenever and MSB is detected
+ * @param j JLabel to be used.
  */
 
    public void setMSBCounterLabel(JLabel j){
@@ -162,7 +161,7 @@ public class ReadSerialPort extends Thread{
    }// end MSBCOunter
 
 /**
- * Increments the MSB counter label
+ * Increments the MSB counter label.
  */
    private void incrementMSBCounterLabel(){
        
@@ -174,9 +173,9 @@ public class ReadSerialPort extends Thread{
    
    }
 
-   /**
-    * sets the MSB countdown to 15
-    */
+/**
+* sets the MSB countdown to 15.
+*/
 public void setNextMSBLabel(JLabel j){
     countDown = j;
 
@@ -187,7 +186,7 @@ public void setNextMSBLabel(JLabel j){
 
 
 /**
- * gets call when the class is instantiated. The bulk of the work is done here
+ * gets call when the class is instantiated. The bulk of the work is done here.
  */
    public void run(){
         //this.setPriority(1);
@@ -382,7 +381,7 @@ public void setNextMSBLabel(JLabel j){
 
 
 /**
- * This method starts the converter that decodes the incoming raw data
+ * This method starts the converter that decodes the incoming raw data.
  * @param m holds the arrival time provided by the deck box
  * @param d indicates whether it's an MSB or an LSB. true for MSB , false for LSB
  */
@@ -403,12 +402,11 @@ public void setNextMSBLabel(JLabel j){
 
 
     }
-
-    /**
-     * starts the timer that decrements the MSB timer every minute if it
-     * is greater tha 0
-     * @param seconds int the time in between decrements in seconds
-     */
+    
+/**
+* starts the timer that decrements the MSB timer every minute if it is greater than 0.
+* @param seconds int the time in between decrements in seconds
+*/
 
   public void startDecrementMSB(int seconds) {
     toolkit = Toolkit.getDefaultToolkit();
@@ -454,18 +452,29 @@ catch(IllegalStateException e){
 
 
 
-
+/**
+ * Inner class that counts how many MSBs have been received.
+ */
     class DecrementMSB extends TimerTask {
-JLabel labelThatHoldsTimeLeft;
+        JLabel labelThatHoldsTimeLeft;
         boolean alive = true;
+        
         public DecrementMSB(JLabel j){
             labelThatHoldsTimeLeft = j;
 
        }// end consturctor
+        
+/**
+ * Stops this process.
+ */        
 public void stop(){
 this.cancel();
 }
 
+/**
+ * Checks if the current process is still running.
+ * @return "true" if the process is still running and false if the process has finished or has been interrupted.
+ */
 public boolean isAlive(){
     return alive;
 }
@@ -557,7 +566,7 @@ catch(Exception e){
 
     }// end class
 */
-    
+   
         public void setTimerLength(double tl){
             timerLength = tl;
         

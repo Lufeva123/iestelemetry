@@ -63,12 +63,16 @@ public void run(){
 
 }// end run
 
+/**
+ * Sets the pulse width.
+ * @param rpw the pulse width as an int.
+ */
 void setRecievePulseWidth(int rpw){
 receivePulseWidth = rpw;
 }// end setRecievePulseWidth
 /**
  * Sets the serial port to be opened.
- * @param sp
+ * @param sp the serial port.
  */
 public void setPort(SerialPort sp){
     port = sp;
@@ -82,10 +86,17 @@ public void setDeckBox(String db){
     deckBox = db;
 }// end setDeckBox
 
+/**
+ * Stops the running of this process.
+ */
 public void stopThread(){
     stopped=true;
 
 }// end stopThread
+
+/**
+ * Clears the reference to the serial port.
+ */
 public void clearPort(){
     port = null;
 
@@ -171,7 +182,7 @@ public void clearPort(){
 /**
  * Used to disable the button that starts this process, so that another thread 
  * cannot be started
- * @param jb
+ * @param jb the button to be disabled.
  */
 public void setButton(JButton jb){
     this.busyButton = jb;
@@ -179,7 +190,7 @@ public void setButton(JButton jb){
 
 /**
  * Sets the gain for the deck box
- * @param g - int holds a value between 0 and 10
+ * @param g int holds a value between 0 and 10
  */
 public void setGain(int g){
     gain = g;
@@ -288,7 +299,7 @@ public void setGain(int g){
 }//end setCjannel
 /**
  * sets the number of frequencies to configure.
- * @param f int- the number of frequencies
+ * @param f int the number of frequencies
  */
 public void setNumberOfFrequencies(int f){
     numberOfFrequencies = f;
@@ -312,16 +323,27 @@ public void setNumberOfFrequencies(int f){
 
 }
 
+ /**
+  * Sets the threshold signal strength after which signals area allowed to pass through.
+  * @param rxt the signal strength as a an int.
+  */
 public void setReceiveThreshold(int rxt){
     receiveThreshold = rxt;
 
 }
-
+/**
+ * Passes a reference of the JComponents to this class so it knows how to enable and disable the buttons on the User Interface.
+ * @param j the array of JComponents.
+ */
 public void setJComponents(JComponent j[]){
     jComponents = j;
 
 }// end
 
+/**
+ * Sets the state of the JComponents: enabled (true), disabled (false).
+ * @param e the state of the JComponenets
+ */
  public void setJComponentsEnable(boolean e)   {
     for (int i = 0 ; i < jComponents.length ; i++){
         jComponents[i].setEnabled(e);

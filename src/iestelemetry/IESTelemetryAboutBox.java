@@ -6,14 +6,25 @@ package iestelemetry;
 
 import org.jdesktop.application.Action;
 
+/**
+ * Class that creates a dialog box displaying information about the application, such as the author and vendor.
+ * @author Pedro Pena
+ */
 public class IESTelemetryAboutBox extends javax.swing.JDialog {
 
+    /**
+     * Constructor of this class that calls the parent class' constructor and initializes components and the close button.
+     * @param parent 
+     */
     public IESTelemetryAboutBox(java.awt.Frame parent) {
         super(parent);
         initComponents();
         getRootPane().setDefaultButton(closeButton);
     }
-
+    
+    /**
+     * Method that closes the dialog box.
+     */
     @Action public void closeAboutBox() {
         dispose();
     }

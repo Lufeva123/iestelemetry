@@ -10,15 +10,9 @@ import java.awt.Desktop;
 import java.io.File;
 
 
-
-/**
- *
- * @author Pedro.Pena
- */
-
-
 /**
  * This class will use the host OS to launch registered documents
+ * @author Pedro Pena
  */
 public class LaunchDesktopDocument {
 

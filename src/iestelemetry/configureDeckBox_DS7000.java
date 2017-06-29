@@ -1,9 +1,3 @@
-/**
- *This class writes the deck box configuration for the DS-7000 to the serial port
- * and configures it. This class runs in the background as a thread.
-
- *  
- **/
 
 package iestelemetry;
 import gnu.io.*;

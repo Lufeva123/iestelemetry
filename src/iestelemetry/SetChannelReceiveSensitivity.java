@@ -1,7 +1,3 @@
-/**
- * This class sends a single ping
- *  
- **/
 
 package iestelemetry;
 import gnu.io.*;
@@ -11,7 +7,10 @@ import javax.swing.*;
 
 
 
-
+/**
+ * This class calibrates the sensitivity of the receiver by sending a single ping.
+ * @author Pedro Pena
+ */
 public class SetChannelReceiveSensitivity extends Thread{
     SerialPort port;
     String deckBox = "";
@@ -74,12 +73,19 @@ public void setDeckBox(String db){
     deckBox = db;
 }// end setDeckBox
 
+/**
+ * Stops the running of this process.
+ */
 public void stopThread(){
     stopped=true;
 
 }// end stopThread
 
-
+/**
+ * Sets the Rx sensitivity of a specified channel based on the threshold sensitivity of that channel.
+ * @param ch the channel to be configured
+ * @param sny the Rx sensitivity to be applied to that channel.
+ */
 public void setChannelandRxSensitivity(String ch, String sny){
 
 channel = ch;

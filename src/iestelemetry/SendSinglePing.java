@@ -82,12 +82,19 @@ public void stopThread(){
 
 
 
-
+/**
+ * Passes a reference of the JComponents to this class so it knows how to enable and disable the buttons on the User Interface.
+ * @param j the array of JComponents
+ */
 public void setJComponents(JComponent j[]){
     jComponents = j;
 
 }// end
 
+/**
+ * Sets the state of the JComponents: enabled (true), disabled (false). 
+ * @param e the state of the JComponenets
+ */
  public void setJComponentsEnable(boolean e)   {
     for (int i = 0 ; i < jComponents.length ; i++){
         jComponents[i].setEnabled(e);

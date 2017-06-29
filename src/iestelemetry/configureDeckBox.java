@@ -1,12 +1,3 @@
-/**
- *This class writes the deck box configuration info to the serial port
- * and configures it. This class runs in the background as a thread.
- * 10-26-2011---- A silent ping is necessary periodically if not the
- * deck unit stops listening. therefore silent ping is enabled with a
- * 99 second period. This essentially makes the timer rollover value 99 seconds.
- * this must be taken into account when the values are calculated.
- *  
- **/
 
 package iestelemetry;
 import gnu.io.*;
@@ -19,6 +10,11 @@ import javax.swing.*;
 /**
  * This class writes the deck box configuration info to the serial port
  * and configures it. This class runs in the background as a thread.
+ * This class runs in the background as a thread.
+ * 10-26-2011---- A silent ping is necessary periodically if not the
+ * deck unit stops listening. therefore silent ping is enabled with a
+ * 99 second period. This essentially makes the timer rollover value 99 seconds.
+ * this must be taken into account when the values are calculated.
  * @author Pedro Pena
  */
 public class configureDeckBox extends Thread{
@@ -36,7 +32,7 @@ public class configureDeckBox extends Thread{
 
 /**
  * This method is invoked when the class is instantiated and it starts
- * the class
+ * the class.
  */
 public void run(){
     freqFormat = new DecimalFormat("##.##");
@@ -88,7 +84,7 @@ if(port!=null){
 
 /**
  * Sets the serial port to be opened.
- * @param sp
+ * @param sp the serial port to be opened.
  */
 public void setPort(SerialPort sp){
     port = sp;
@@ -102,6 +98,9 @@ public void setDeckBox(String db){
     deckBox = db;
 }// end setDeckBox
 
+/**
+ * Stops the running of this process.
+ */
 public void stopThread(){
     stopped=true;
 
@@ -109,7 +108,7 @@ public void stopThread(){
 
 
 /**
- * sends the ping command to the deck box
+ * sends the ping command to the deck box.
  */
 private void ping(){
 
@@ -134,7 +133,7 @@ private void ping(){
 }// end silentPing
 /**
  * Enables silent pinging on the deck box
- * @param sp Boolean- true for pinging and false for no pingin
+ * @param sp Boolean- true for pinging and false for no pinging.
  */
 private void setEnableSilentPing(Boolean sp){
     try{
@@ -187,7 +186,7 @@ private void setEnableDeckBoxReplies(boolean on){
 
 /**
  * Used to disable the button that starts this process, so that another thread 
- * cannot be started
+ * cannot be started.
  * @param jb
  */
 public void setButton(JButton jb){
@@ -313,7 +312,7 @@ public void setNumberOfFrequencies(int f){
 }
 
 /**
- * pause the thread t milliseconds
+ * pause the thread t milliseconds.
  * @param t long - the number of milliseconds to pause the thread.
  */
 private void pause(long t){

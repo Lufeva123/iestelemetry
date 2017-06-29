@@ -1,10 +1,3 @@
-/**
- *This class writes the deck box configuration info to the serial port
- * and configures it. This class runs in the background as a thread.
- * 02/21/2013 changed continuous transponde command to ats15=6 so that 
- * box does not start in continous transponde mode
- *  
- **/
 
 package iestelemetry;
 import gnu.io.*;
@@ -17,6 +10,8 @@ import javax.swing.*;
 /**
  * This class writes the deck box configuration info to the serial port
  * and configures it. This class runs in the background as a thread.
+ * 02/21/2013 changed continuous transponde command to ats15=6 so that 
+ * box does not start in continous transponde mode.
  * @author Pedro Pena
  */
 public class configureDeckBox_UDB9000 extends DeckBox{
@@ -76,6 +71,10 @@ clearPort();
 
 }// end run
 
+/**
+ * Puts the deck unit in a mode that it can receive commands.
+ * Exits continuous transpond mode.
+ */
 public void sendEscapeSequence(){
     try{
      os = new PrintStream(port.getOutputStream());
@@ -96,7 +95,9 @@ public void sendEscapeSequence(){
 
 }// end sendEscapeSequnce
 
-
+/**
+ * Puts in a mode that it is continuously listening for signals.
+ */
 public void startContinuousTranspondMode(){
     try{
      os = new PrintStream(port.getOutputStream());
@@ -116,6 +117,11 @@ public void startContinuousTranspondMode(){
 
 }//end continuousTranspondMode
 
+/**
+ * Adjusts the sensitivity (threshold) of a given channel.
+ * @param ch the channel to be adjusted
+ * @param val the value of the sensitivity to be set
+ */
 public void adjustChannelReceiveThreshold(double ch, double val){
     try{
      os = new PrintStream(port.getOutputStream());
@@ -133,6 +139,10 @@ public void adjustChannelReceiveThreshold(double ch, double val){
 
 }// end adjustChannelReceiveThreshold
 
+/**
+ * Sets the default receive threshold for all channels.
+ * @param rst 
+ */
 public void setGlobalReceiveThreshold(int rst){
 
     try{
@@ -151,10 +161,18 @@ public void setGlobalReceiveThreshold(int rst){
 
 }// end setGlobalReceiveThreshold
 
+/**
+ * Sets the time length (width) of the pulse in milliseconds.
+ * @param rpw the time length of a pulse in milliseconds.
+ */
 void setRecievePulseWidth(int rpw){
 receivePulseWidth = rpw;
 }// end setRecievePulseWidth
 
+/**
+ * Sets the time length (width) of the pulse in milliseconds.
+ * @param rpw the time length of a pulse in milliseconds.
+ */
 void setRXPulseWidth(int rpw){
 
     try{
@@ -172,6 +190,10 @@ void setRXPulseWidth(int rpw){
     }// end catch    
 }//end set Ping Length
 
+/**
+ * Stabilizes the oscillator.
+ * @param tco 
+ */
 void setTemperatureCompensatedOscillator(int tco){
 
     try{
@@ -189,7 +211,9 @@ void setTemperatureCompensatedOscillator(int tco){
     }// end catch  
 }//set TCO
 
-
+/**
+ * Clears the data buffer.
+ */
 public void clearDataBuffer(){
     
     try{
@@ -208,6 +232,10 @@ public void clearDataBuffer(){
     
 }// end clear data buffer
 
+/**
+ * Puts the box in transpond mode after a signal is sent for the specified amount of time.
+ * @param to the amount of time the box will be on transpond mode.
+ */
 public void setListenTimeout(int to)
 {
     try{

@@ -22,8 +22,6 @@ import java.util.TimerTask;
  * 1.11.2013 epoch time is now sent to ConvertIncommingFreq2Data so that the timestamps are the same throughout
  *
  */
-
-
 public class ReadSerialPort extends Thread{
 
 

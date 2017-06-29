@@ -13,7 +13,7 @@ import javax.swing.*;
 
 /**
  * This class writes the deck box configuration info to the serial port
- * and configures it. This class runs in the background as a thread.
+ * and configures it. It sends a single ping and runs in the background as a thread.
  * @author Pedro Pena
  */
 public class SetRXThreshold extends Thread{
@@ -77,12 +77,18 @@ public void setDeckBox(String db){
     deckBox = db;
 }// end setDeckBox
 
+/**
+ * Stops the running of this process.
+ */
 public void stopThread(){
     stopped=true;
 
 }// end stopThread
 
-
+/**
+ * Sets the default sensitivity for all channels once the program starts.
+ * @param rt 
+ */
 public void setGlobalReceiveThreshold(int rt){
 
 receiveThreshold = rt;

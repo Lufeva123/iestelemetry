@@ -1,8 +1,3 @@
-/**
- *This class writes the deck box configuration info to the serial port
- * and configures it. This class runs in the background as a thread.
- *  
- **/
 
 package iestelemetry;
 import gnu.io.*;
@@ -142,11 +137,18 @@ private void setFrequencyFilterNone(){
 
 }// end setFrequencyFilter
 
+/**
+ * Returns the threshold sensitivity.
+ * @return the threshold sensitivity
+ */
 private int  getReceiveSensitivity(){
     //return 246*gain/10 +10;
 return receiveThreshold;
 }
 
+/**
+ * Sets the Rx sensitivity.
+ */
 private void setReceiveSensitivity(){
 
             try{
@@ -165,6 +167,10 @@ private void setReceiveSensitivity(){
 
 }
 
+/**
+ * Allows you to specify which frequencies the deck box will allow through.
+ * @param fs 
+ */
  void setFilterStatus(Boolean fs){
     try{
      os = new PrintStream(port.getOutputStream());
@@ -188,6 +194,10 @@ private void setReceiveSensitivity(){
 
 }// end
 
+ /**
+  * Sends a ping at a certain period.
+  * @param rp enabled (true) or disabled (false)
+  */
  void setEnabledRepeatInterval(Boolean rp){
 
             try{
@@ -217,6 +227,10 @@ private void setReceiveSensitivity(){
 
 }// end setEnabledRepeatInterval
 
+ /**
+  * The frequency that the deck box transmits on.
+  * @param ff the frequency to be transmitted.
+  */
  private void setTXFreq(String ff){
 
             try{
